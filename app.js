@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json()); // used to paarse the data
 
-mongoose.connect("mongodb://localhost:27017/expenses").then(() => {
+mongoose.connect(
+    "mongodb+srv://Shahil:Shahil123@express.ybjhf.mongodb.net/?retryWrites=true&w=majority&appName=Express").then(() => {
   console.log("connected to database");
 });
 const expenseSchema = new mongoose.Schema({
@@ -46,6 +47,7 @@ app.post("/api/expenses", async (req, res) => {
     res.status(400).json({ message: "Title and amount are required" });
     return;
   }
+
   const newExpense = new Expense({
     id: uuidv4(),
     title, // title:title is equal to title
